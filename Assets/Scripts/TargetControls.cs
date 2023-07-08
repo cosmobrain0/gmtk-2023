@@ -21,7 +21,7 @@ public class TargetControls: MonoBehaviour
     void Update()
     {
         Vector3 offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float angle = Mathf.Atan2(offset.y, offset.x);
+        float angle = Mathf.Atan2(offset.y, offset.x) - Mathf.PI/2f;
         transform.rotation = Quaternion.Euler(0, 0, angle * 180f/Mathf.PI);
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
