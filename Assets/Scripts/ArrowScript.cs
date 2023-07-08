@@ -7,8 +7,8 @@ public class ArrowScript : MonoBehaviour
     public GameObject target;
     public float arrowSpeed;
     private Vector3 direction;
-    private Rigidbody2D rb;
     private int archerTriggerCounter = 0;
+    private Rigidbody2D rb;
     private void Awake()
     {
         target = FindObjectOfType<TargetControls>().gameObject;
@@ -19,11 +19,7 @@ public class ArrowScript : MonoBehaviour
     private void FixedUpdate()
     {
         CheckIfInScreen();
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) - Mathf.PI/2;
-        transform.rotation = Quaternion.Euler(0f,0f, angle * (180/Mathf.PI));
+        //transform.position += direction * Time.deltaTime * arrowSpeed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,8 +30,12 @@ public class ArrowScript : MonoBehaviour
         {
             Debug.Log("Hit archer!");
             //TODO: Switch level/reduce archer HP
-        }
-        
+        } 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) - Mathf.PI / 2;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle * 180 / Mathf.PI);
     }
     private void CheckIfInScreen()
     {

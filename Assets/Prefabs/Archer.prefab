@@ -100,9 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   arrowPrefab: {fileID: 3842125897844912268, guid: 586bf54a01941584b8030c8dd3f2393b, type: 3}
-  fireCooldown: 2
+  fireCooldown: 1
   arrowSpeed: 4
-  arrowCount: 20
+  arrowCount: 100
 --- !u!61 &8374328148379996953
 BoxCollider2D:
   m_ObjectHideFlags: 0
