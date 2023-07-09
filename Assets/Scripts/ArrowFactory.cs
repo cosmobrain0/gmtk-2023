@@ -15,12 +15,9 @@ public class ArrowFactory : MonoBehaviour
     private float animationPause;
     void Start()
     {
+        animationPause = fireCooldown / 3f;
         selectedTargetIndex = 0;
         StartCoroutine(fireArrows());
-    }
-    private void Update()
-    {
-        transform.rotation = getAngleToTarget();
     }
     private IEnumerator fireArrows()
     {
@@ -49,6 +46,7 @@ public class ArrowFactory : MonoBehaviour
         ArrowScript newArrowScript = newArrow.GetComponent<ArrowScript>();
         newArrowScript.arrowSpeed = arrowSpeed;
     }
+
 
     private Vector3 GetTargetClosest()
     {

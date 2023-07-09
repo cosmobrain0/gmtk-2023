@@ -609,11 +609,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f863c4d086284404dbb9643655333d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   arrowPrefab: {fileID: 3842125897844912268, guid: 586bf54a01941584b8030c8dd3f2393b, type: 3}
   fireCooldown: 1
   arrowSpeed: 4
   arrowCount: 100
+  bow1: {fileID: 4952030655453844105}
+  bow2: {fileID: 3394582585405714658}
+  bow3: {fileID: 8247933293763589427}
 --- !u!61 &8374328148379996953
 BoxCollider2D:
   m_ObjectHideFlags: 0
