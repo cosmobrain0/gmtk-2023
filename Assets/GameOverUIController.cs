@@ -7,7 +7,7 @@ public class GameOverUIController : MonoBehaviour
 {
     public void retryLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game");
     }
     public void loadMenu()
     {
