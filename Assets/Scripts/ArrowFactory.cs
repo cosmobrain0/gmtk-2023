@@ -19,6 +19,13 @@ public class ArrowFactory : MonoBehaviour
         selectedTargetIndex = 0;
         StartCoroutine(fireArrows());
     }
+    void Update()
+    {
+        Vector3 target = GetTarget();
+        Vector3 offset = target-transform.position;
+        float angle = Mathf.Atan2(offset.y, offset.x) - Mathf.PI/2;
+        transform.rotation = Quaternion.Euler(0, 0, angle*180f/Mathf.PI);
+    }
     private IEnumerator fireArrows()
     {
         for (int i = 0; i < arrowCount; i++)
@@ -38,13 +45,21 @@ public class ArrowFactory : MonoBehaviour
     }
     private void createArrow()
     {
-        Vector3 target = GetTargetClosest(); // change this to GetTargetNext() or GetTargetClosest() to see different methods
+        Vector3 target = GetTarget(); 
         Vector3 offset = target - transform.position;
         float angle = Mathf.Atan2(offset.y, offset.x) - Mathf.PI/2;
         GameObject newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0,0, angle * (180/Mathf.PI)));
-        // newArrow.transform.parent = transform;
         ArrowScript newArrowScript = newArrow.GetComponent<ArrowScript>();
+        newArrow.transform.parent = transform.parent;
         newArrowScript.arrowSpeed = arrowSpeed;
+        newArrowScript.direction = offset.normalized;
+        newArrowScript.GetComponent<Rigidbody2D>().AddForce(offset.normalized * arrowSpeed);
+    }
+
+    private Vector3 GetTarget()
+    {
+        return GetTargetClosest();
+        // return GetTargetNext();
     }
 
 
@@ -66,4 +81,5 @@ public class ArrowFactory : MonoBehaviour
         if (selectedTargetIndex >= targets.Length) selectedTargetIndex = 0;
         return targets[selectedTargetIndex].transform.position;
     }
+
 }

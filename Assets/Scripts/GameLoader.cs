@@ -24,7 +24,6 @@ public class GameLoader : MonoBehaviour
     void Start()
     {
         Destroy(Camera.main.gameObject.GetComponent<AudioListener>());
-        // TODO: replace with some sort of read-from-file
         level = new string[] {
             "archers:",
             "  -2, -2, 2, -2, 4, 3, 0",
