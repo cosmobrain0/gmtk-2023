@@ -10,7 +10,7 @@ public enum Direction {
 [System.Serializable]
 public struct Path {
     [SerializeField]
-    Vector2[] points;
+    public Vector2[] points;
 
     public Path(Vector2[] _points) {
         points = _points;
@@ -51,11 +51,14 @@ public class FollowPath : MonoBehaviour
     public Path path;
     public Direction direction;
     public float progress;
-    public float progressSpeed;
+    public float progressSpeed = 0.16f;
 
     // Start is called before the first frame update
     void Start()
     {
+        progressSpeed = 0.16f;
+        Debug.Log("Archer Starting");
+        Debug.Log(path.points.Length);
         progress = 0f;
         direction = Direction.Forwards;
     }

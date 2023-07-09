@@ -1,16 +1,17 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ArrowFactory : MonoBehaviour
 {
-    [SerializeField] GameObject target;
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] float fireCooldown;
     [SerializeField] float arrowSpeed;
     [SerializeField] int arrowCount;
     void Start()
     {
+        selectedTargetIndex = 0;
         StartCoroutine(fireArrows());
     }
     private IEnumerator fireArrows()
@@ -24,11 +25,31 @@ public class ArrowFactory : MonoBehaviour
     }
     private void createArrow()
     {
-        Vector3 offset = target.transform.position - transform.position;
+        Vector3 target = GetTargetClosest(); // change this to GetTargetNext() or GetTargetClosest() to see different methods
+        Vector3 offset = target - transform.position;
         float angle = Mathf.Atan2(offset.y, offset.x) - Mathf.PI/2;
         GameObject newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0,0, angle * (180/Mathf.PI)));
-        newArrow.transform.parent = transform;
+        // newArrow.transform.parent = transform;
         ArrowScript newArrowScript = newArrow.GetComponent<ArrowScript>();
         newArrowScript.arrowSpeed = arrowSpeed;
+    }
+
+    private Vector3 GetTargetClosest()
+    {
+        Vector3[] targets = GameObject.FindGameObjectsWithTag("Target").Select(x => x.transform.position).ToArray();
+        return targets.Aggregate((acc, val) => {
+            float currentDistance = (acc-transform.position).sqrMagnitude;
+            float newDistance = (val-transform.position).sqrMagnitude;
+            return newDistance < currentDistance ? val : acc;
+        });
+    }
+
+    private int selectedTargetIndex;
+    private Vector3 GetTargetNext()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
+        selectedTargetIndex++;
+        if (selectedTargetIndex >= targets.Length) selectedTargetIndex = 0;
+        return targets[selectedTargetIndex].transform.position;
     }
 }
