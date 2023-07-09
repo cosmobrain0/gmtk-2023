@@ -2,6 +2,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ArrowFactory : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class ArrowFactory : MonoBehaviour
             createArrow();
         }
         Debug.Log("Ran out of arrows!");
+        SceneManager.LoadScene("Game Over Scene");
     }
     private void createArrow()
     {

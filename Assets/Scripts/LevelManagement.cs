@@ -2,6 +2,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManagement : MonoBehaviour
 {
@@ -159,6 +160,7 @@ public class LevelManagement : MonoBehaviour
             SetCurrentLevel(currentLevel+1);
         } else {
             Debug.Log("VICTORY!!!");
+            SceneManager.LoadScene("Victory Scene");
         }
     }
 
