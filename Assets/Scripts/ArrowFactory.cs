@@ -9,17 +9,33 @@ public class ArrowFactory : MonoBehaviour
     [SerializeField] float fireCooldown;
     [SerializeField] float arrowSpeed;
     [SerializeField] int arrowCount;
+    [SerializeField] GameObject bow1;
+    [SerializeField] GameObject bow2;
+    [SerializeField] GameObject bow3;
+    private float animationPause;
     void Start()
     {
         selectedTargetIndex = 0;
         StartCoroutine(fireArrows());
     }
+    private void Update()
+    {
+        transform.rotation = getAngleToTarget();
+    }
     private IEnumerator fireArrows()
     {
         for (int i = 0; i < arrowCount; i++)
         {
+            bow3.SetActive(false);
+            bow1.SetActive(true);
+            yield return new WaitForSeconds(animationPause);
+            bow1.SetActive(false);
+            bow2.SetActive(true);
+            yield return new WaitForSeconds(animationPause);
+            bow2.SetActive(false);
+            bow3.SetActive(true);
+            yield return new WaitForSeconds(animationPause);
             createArrow();
-            yield return new WaitForSeconds(fireCooldown);
         }
         Debug.Log("Ran out of arrows!");
     }

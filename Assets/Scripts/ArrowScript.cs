@@ -24,7 +24,7 @@ public class ArrowScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.gameObject.tag == "Archer") { // I don't like string literals like this but it's a game jam
+        if (collision.gameObject.tag == "Archer") { // I don't like string literals like this but it's a game jam (Me neither but its a game jam - Felix)
             archerTriggerCounter++;
             //Because trigger occurs with archer when arrow spawns, so we want the second instance of trigger
             if (archerTriggerCounter == 2)
@@ -45,13 +45,6 @@ public class ArrowScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, newVelocity));
             rb.velocity = newVelocity;
         }
-    }
-    
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // gonna try making an alternative
-        // float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) - Mathf.PI / 2;
-        // transform.rotation = Quaternion.Euler(0f, 0f, angle * 180 / Mathf.PI);
     }
     
     private void CheckIfInScreen()
