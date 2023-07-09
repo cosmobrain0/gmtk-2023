@@ -45,6 +45,8 @@ public class ArrowFactory : MonoBehaviour
         // newArrow.transform.parent = transform;
         ArrowScript newArrowScript = newArrow.GetComponent<ArrowScript>();
         newArrowScript.arrowSpeed = arrowSpeed;
+        newArrowScript.direction = offset.normalized;
+        newArrowScript.GetComponent<Rigidbody2D>().AddForce(offset.normalized * arrowSpeed);
     }
 
 

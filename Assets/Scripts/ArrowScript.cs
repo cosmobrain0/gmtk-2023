@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
 {
-    public GameObject target;
     public float arrowSpeed;
-    private Vector3 direction;
+    public Vector3 direction;
     private int archerTriggerCounter = 0;
     private Rigidbody2D rb;
     private void Awake()
     {
-        target = FindObjectOfType<TargetControls>().gameObject;
-        direction = (target.transform.position - transform.position).normalized;
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(direction * arrowSpeed);
+        // rb.AddForce(direction * arrowSpeed);
     }
     private void FixedUpdate()
     {
