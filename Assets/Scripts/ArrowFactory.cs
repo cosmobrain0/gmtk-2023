@@ -50,6 +50,7 @@ public class ArrowFactory : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) - Mathf.PI/2;
         GameObject newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0,0, angle * (180/Mathf.PI)));
         ArrowScript newArrowScript = newArrow.GetComponent<ArrowScript>();
+        newArrow.transform.parent = transform.parent;
         newArrowScript.arrowSpeed = arrowSpeed;
         newArrowScript.direction = offset.normalized;
         newArrowScript.GetComponent<Rigidbody2D>().AddForce(offset.normalized * arrowSpeed);

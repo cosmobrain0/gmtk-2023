@@ -17,17 +17,37 @@ public class LevelManagement : MonoBehaviour
     {
         levels = new string[][] {
             new string[] {
-                "archers:",
-                "  -2, -2, 2, -2, 4, 3, 0",
                 "",
                 "targets:",
-                "  2, 3",
                 "  0, 0",
                 "",
+                "archers:",
+                "  2, 0, 4, 0, 1"
+            },
+            new string[] {
+                "",
+                "targets:",
+                "  -1, 0",
+                "",
+                "archers:",
+                "  1, 0, 1, -1, 1, 1, 0",
+                "",
                 "walls:",
-                "  -1, -1, 1, -1",
-                "  2, 0, 3, -1",
-                ""
+                "  4, -3, 4, 3"
+            },
+            new string[] {
+            	"targets:",
+            	"  0, 0",
+            	"",
+            	"archers:",
+            	"  3, 3, 3, -3, -3, -3, -3, 3, 0",
+            	"",
+            	"walls:",
+            	"  2.2, -2.4, 2.4, -2",
+            	"  -2.2, -2.4, -2.4, -2",
+            	"  -1, -0.5, -1, 0.5",
+            	"  1, -0.5, 1, 0.5",
+            	""
             }
         };
         levelStuffsParent.transform.position = new Vector3(0, 0, 0);
@@ -135,6 +155,7 @@ public class LevelManagement : MonoBehaviour
     public void NextLevel()
     {
         if (currentLevel < levels.Length-1) {
+            Debug.Log("Next Level");
             SetCurrentLevel(currentLevel+1);
         } else {
             Debug.Log("VICTORY!!!");
