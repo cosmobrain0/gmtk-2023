@@ -132,5 +132,13 @@ public class LevelManagement : MonoBehaviour
         target.transform.parent = levelStuffsParent.transform;
         return target;
     }
+    public void NextLevel()
+    {
+        if (currentLevel < levels.Length-1) {
+            SetCurrentLevel(currentLevel+1);
+        } else {
+            Debug.Log("VICTORY!!!");
+        }
+    }
 
 }

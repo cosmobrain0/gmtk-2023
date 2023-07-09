@@ -27,7 +27,7 @@ public class ArrowScript : MonoBehaviour
             if (archerTriggerCounter == 2)
             {
                 Debug.Log("Hit archer!");
-                //TODO: Switch level/reduce archer HP
+                FindObjectOfType<LevelManagement>().NextLevel();
             } 
         } else {
             // this maths is kinda dodgy,
